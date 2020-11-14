@@ -1,27 +1,27 @@
 # Microservices: Blog
 Switch between branches to see the other projects.
-## Services
-### Posts
+## [Services](./services)
+### [Posts](./services/posts)
 |Path|Method|Request Body|Feature|Result
 |--|--|--|--|--|
 |/posts|POST|{ title: string}|Create a new post|201, created post object
 |/posts|GET|-|Get all posts|200, list of posts
 |/events|POST|event object|Does nothing|204
 
-### Comments
+### [Comments](./services/comments)
 |Path|Method|Request Body|Feature|Result|
 |--|--|--|--|--|
 |/posts/:id/comments|POST|{ content: string }|Create a new comment|201, comment object created
 |/posts/:id/comments|GET|-|Get all comments|200, list of comments
 |/events|POST|event object|Does nothing|204
 
-### Event bus
+### [Event bus](./services/event-bus)
 
 |Path|Method|Request Body|Feature|Result|
 |--|--|--|--|--|
 |/events|POST|event = {type, data}|Echo event to other services|200
 
-### Query
+### [Query](./services/query)
 Aggregates posts and comments to be able to reduce to 1 the number of requests necessary to fetch all posts & requests.
 
 |Path|Method|Request Body|Feature|Result|
