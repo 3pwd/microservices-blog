@@ -8,7 +8,7 @@ export default () => {
   const [posts, setPosts] = useState({})
 
   const fetchPosts = async () => {
-    const { data: posts } = await axios(4000).get('posts')
+    const { data: posts } = await axios(4002).get('posts')
     setPosts(posts)
   }
 
@@ -18,10 +18,10 @@ export default () => {
 
   return (
     <div className='d-flex flex-row flex-wrap justify-content-between'>
-      {Object.entries(posts).map(([id, { title }], _) => (
+      {Object.entries(posts).map(([id, { title, comments }], _) => (
         <>
           <Post title={title} key={id}>
-            <CommentList postId={id} />
+            <CommentList postId={id} comments={comments} />
             <CommentCreate postId={id} />
           </Post>
         </>

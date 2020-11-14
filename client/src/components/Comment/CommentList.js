@@ -1,29 +1,13 @@
-import React, { useState, useEffect } from 'react'
-import { axios } from '../../lib'
+import React from 'react'
 import Comment from './Comment'
 
 //eslint-disable-next-line
-export default ({ postId }) => {
-  const [comments, setComments] = useState([])
-
-  const fetchComments = async () => {
-    const { data: comments } = await axios(4001).get(`posts/${postId}/comments`)
-    setComments(comments)
-  }
-
-  useEffect(() => {
-    fetchComments()
-  }, [])
-
+export default ({ comments }) => {
   return (
     <ul>
-      {comments ? (
-        comments.map(({ content }, index) => (
-          <Comment key={index} content={content} />
-        ))
-      ) : (
-        <></>
-      )}
+      {comments.map(({ content }, index) => (
+        <Comment key={index} content={content} />
+      ))}
     </ul>
   )
 }
