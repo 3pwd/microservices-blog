@@ -1,10 +1,12 @@
-const routes = require('./routes')
 const express = require('express')
+const router = require('./routes')
+const middlewares = require('./middlewares')
+
 const { PORT } = require('./config')
 
 const app = express()
 
-app.use(express.json())
-routes(app)
+app.use(middlewares)
+app.use(router)
 
 app.listen(PORT, () => console.log(`Posts service 👂 on port ${PORT}`))
