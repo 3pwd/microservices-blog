@@ -1,7 +1,8 @@
 import React, { useState } from 'react'
 import { axios } from '../../lib'
 
-const PostCreate = () => {
+// eslint-disable-next-line
+export default () => {
   const [title, setTitle] = useState('')
 
   const onSubmit = async e => {
@@ -31,5 +32,3 @@ const PostCreate = () => {
     </div>
   )
 }
-
-export default PostCreate
