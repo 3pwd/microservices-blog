@@ -5,12 +5,12 @@ const { ROOT_URL } = require('../config')
 const router = Router()
 const commentsByPostId = {}
 
-router.route(`${ROOT_URL}/:id/comments`).get((req, res) => {
+router.get(`${ROOT_URL}/:id/comments`, (req, res) => {
   const { id } = req.params
   res.status(200).send(commentsByPostId[id])
 })
 
-router.route(`${ROOT_URL}/:id/comments`).post((req, res) => {
+router.post(`${ROOT_URL}/:id/comments`, (req, res) => {
   const { id: postId } = req.params
 
   // generate random ID for comment

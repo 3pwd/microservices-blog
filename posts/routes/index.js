@@ -5,11 +5,11 @@ const { ROOT_URL } = require('../config')
 const router = Router()
 const posts = {}
 
-router.route(ROOT_URL).get((_, res) => {
+router.get(ROOT_URL, (_, res) => {
   res.status(200).send(posts)
 })
 
-router.route(ROOT_URL).post((req, res) => {
+router.post(ROOT_URL, (req, res) => {
   // generate random ID
   const id = randomBytes(4).toString('hex')
   const { title } = req.body
