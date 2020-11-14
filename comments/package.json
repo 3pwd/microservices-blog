@@ -1,4 +1,11 @@
 {
+  "name": "posts",
+  "version": "1.0.0",
+  "main": "index.js",
+  "license": "MIT",
+  "scripts": {
+    "start": "nodemon index"
+  },
   "dependencies": {
     "axios": "^0.21.0",
     "cors": "^2.8.5",

@@ -4,7 +4,7 @@ const { ROOT_URL } = require('../config')
 module.exports = app => {
   const posts = {}
 
-  app.route(ROOT_URL).get((req, res) => {
+  app.route(ROOT_URL).get((_, res) => {
     res.status(200).send(posts)
   })
 

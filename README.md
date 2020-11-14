@@ -5,13 +5,13 @@ Switch between branches to see the other projects.
 |Path|Method|Request Body|Feature|Result
 |--|--|--|--|--|
 |/posts|POST|{ title: string}|Create a new post|201, created post object
-|/posts|GET|-|Get all posts|
+|/posts|GET|-|Get all posts|200, list of posts
 
 ### Comment
-|Path|Method|Body|Feature|
-|--|--|--|--|
-|/comments|POST|{ post: id, content: string }|Create a new comment|
-|/comments|GET|-|Get all comments|
+|Path|Method|Request Body|Feature|Result|
+|--|--|--|--|--|
+|/posts/:id/comments|POST|{ content: string }|Create a new comment|201, comment object created
+|/posts/:id/comments|GET|-|Get all comments|200, list of comments
 
 
 ## Archictecture/Implementation
