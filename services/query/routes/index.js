@@ -1,4 +1,5 @@
 const { Router } = require('express')
+const { POST_CREATED, COMMENT_CREATED } = require('../../types')
 
 const router = Router()
 
@@ -11,11 +12,11 @@ router.post('/events', (req, res) => {
   } = req.body
 
   console.log('received event', type)
-  if (type === 'PostCreated') {
+  if (type === POST_CREATED) {
     postsAndComments[postId] = { title, comments: [] }
   }
 
-  if (type === 'CommentCreated') {
+  if (type === COMMENT_CREATED) {
     postsAndComments[postId].comments.push({
       id: commentId,
       content

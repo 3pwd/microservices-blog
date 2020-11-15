@@ -1,5 +1,9 @@
 import React, { useState } from 'react'
 import { axios } from '../../lib'
+import config from '../../config'
+const {
+  posts: { PORT }
+} = config
 
 // eslint-disable-next-line
 export default () => {
@@ -9,7 +13,7 @@ export default () => {
     e.preventDefault()
 
     // create a new post by submitting request to posts service
-    await axios(4000).post('posts', { title })
+    await axios(PORT).post('posts', { title })
 
     // reset form
     setTitle('')

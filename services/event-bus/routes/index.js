@@ -1,6 +1,7 @@
 const { Router } = require('express')
-const { ROOT_URL } = require('../config')
+const { ROOT_URL } = require('../../config')['event-bus']
 const axios = require('axios')
+const config = require('../../config')
 
 const router = Router()
 
@@ -13,8 +14,8 @@ router.post(ROOT_URL, (req, res) => {
   comments on ports 4001
   query on port 4002
   */
-  ;[0, 1, 2].forEach(digit =>
-    axios.post(`http://localhost:400${digit}/events`, event)
+  ;['posts', 'comments', 'query'].forEach(service =>
+    axios.post(`http://localhost:${config[service].PORT}/events`, event)
   )
 
   res.status(200).send({ status: 'OK' })

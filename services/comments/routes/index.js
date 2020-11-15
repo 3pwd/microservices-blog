@@ -1,7 +1,11 @@
 const { Router } = require('express')
 const axios = require('axios')
+const config = require('../../config')
 const { randomBytes } = require('crypto')
-const { ROOT_URL } = require('../config')
+const { COMMENT_CREATED } = require('../../types')
+
+const { ROOT_URL } = config.comments
+const { PORT: EVENT_BUS_PORT } = config['event-bus']
 
 const router = Router()
 const commentsByPostId = {}
@@ -24,8 +28,8 @@ router.post(`${ROOT_URL}/:id/comments`, async (req, res) => {
   commentsByPostId[postId] = comments
 
   // dispatch event to event bus
-  await axios.post('http://localhost:4003/events', {
-    type: 'CommentCreated',
+  await axios.post(`http://localhost:${EVENT_BUS_PORT}/events`, {
+    type: COMMENT_CREATED,
     data: Object.assign(newComment, { postId })
   })
 

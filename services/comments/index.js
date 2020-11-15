@@ -2,7 +2,7 @@ const express = require('express')
 const router = require('./routes')
 const middlewares = require('./middlewares')
 
-const { PORT } = require('./config')
+const { PORT } = require('../config').comments
 
 const app = express()
 

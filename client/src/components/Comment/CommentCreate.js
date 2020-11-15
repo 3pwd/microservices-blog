@@ -1,5 +1,9 @@
 import React, { useState } from 'react'
 import { axios } from '../../lib'
+import config from '../../config'
+const {
+  comments: { PORT }
+} = config
 
 //eslint-disable-next-line
 export default ({ postId }) => {
@@ -7,7 +11,7 @@ export default ({ postId }) => {
 
   const onSubmit = async e => {
     e.preventDefault()
-    await axios(4001).post(`posts/${postId}/comments`, { content })
+    await axios(PORT).post(`posts/${postId}/comments`, { content })
     setContent('')
   }
 

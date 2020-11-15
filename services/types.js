@@ -1,0 +1,5 @@
+exports.POST_CREATED = 'PostCreated'
+exports.COMMENT_CREATED = 'CommentCreated'
+exports.PENDING = 'pending'
+exports.APPROVED = 'approved'
+exports.DENIED = 'denied'
