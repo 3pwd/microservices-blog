@@ -3,7 +3,7 @@ const axios = require('axios')
 const { randomBytes } = require('crypto')
 const config = require('../../config')
 const {
-  COMMENT_UPDATED,
+  COMMENT_MODERATED,
   COMMENT_CREATED,
   APPROVED,
   DENIED
@@ -44,13 +44,14 @@ router.post('/events', async (req, res) => {
   console.log('received event', type)
 
   if (type === COMMENT_CREATED) {
-    const moderation_status = content =>
-      content.toLowerCase().includes(FORBIDDEN) ? DENIED : APPROVED
+    const status = data.content.toLowerCase().includes(FORBIDDEN)
+      ? DENIED
+      : APPROVED
 
-    data = Object.assign(data, { status: moderation_status(data.content) })
+    data = Object.assign(data, { status })
 
     await axios.post(`http://localhost:${EVENT_BUS_PORT}/events`, {
-      type: COMMENT_UPDATED,
+      type: COMMENT_MODERATED,
       data
     })
   }
