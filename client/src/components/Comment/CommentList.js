@@ -5,9 +5,13 @@ import Comment from './Comment'
 export default ({ comments }) => {
   return (
     <ul>
-      {comments.map(({ content }, index) => (
-        <Comment key={index} content={content} />
-      ))}
+      {comments ? (
+        Object.values(comments).map((comment, index) => (
+          <Comment key={index} {...comment} />
+        ))
+      ) : (
+        <></>
+      )}
     </ul>
   )
 }

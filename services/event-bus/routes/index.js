@@ -14,7 +14,7 @@ router.post(ROOT_URL, (req, res) => {
   comments on ports 4001
   query on port 4002
   */
-  ;['posts', 'comments', 'query'].forEach(service =>
+  ;['posts', 'comments', 'query', 'moderation'].forEach(service =>
     axios.post(`http://localhost:${config[service].PORT}/events`, event)
   )
 

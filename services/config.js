@@ -12,7 +12,8 @@ module.exports = {
   },
   moderation: {
     PORT: 4003,
-    ROOT_URL: ''
+    ROOT_URL: '',
+    FORBIDDEN: 'caca'
   },
   'event-bus': {
     PORT: 4005,
