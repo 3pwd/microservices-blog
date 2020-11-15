@@ -2,7 +2,6 @@ import React from 'react'
 
 // eslint-disable-next-line
 export default ({ comment }) => {
-  console.log(comment)
   const renderContent = ({ content, status }) => {
     let result
     switch (status) {
