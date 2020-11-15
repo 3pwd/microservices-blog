@@ -31,25 +31,25 @@ router.post('/events', (req, res) => {
 })
 
 router.get('/posts', (_, res) => {
-  const approvedComments = comments =>
-    Object.entries(comments).reduce((acc, [commentId, comment]) => {
-      if (comment.status === APPROVED) {
-        acc[commentId] = comment
-        return acc
-      } else {
-        return acc
-      }
-    }, {})
+  // const approvedComments = comments =>
+  //   Object.entries(comments).reduce((acc, [commentId, comment]) => {
+  //     if (comment.status === APPROVED) {
+  //       acc[commentId] = comment
+  //       return acc
+  //     } else {
+  //       return acc
+  //     }
+  //   }, {})
 
-  const approvedPosts = Object.entries(postsAndComments).reduce(
-    (acc, [postId, { title, comments }]) => {
-      acc[postId] = { title, comments: approvedComments(comments) }
-      return acc
-    },
-    {}
-  )
+  // const approvedPosts = Object.entries(postsAndComments).reduce(
+  //   (acc, [postId, { title, comments }]) => {
+  //     acc[postId] = { title, comments: approvedComments(comments) }
+  //     return acc
+  //   },
+  //   {}
+  // )
 
-  res.status(200).send(approvedPosts)
+  res.status(200).send(postsAndComments)
 })
 
 module.exports = router

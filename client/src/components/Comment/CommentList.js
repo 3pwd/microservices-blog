@@ -7,7 +7,7 @@ export default ({ comments }) => {
     <ul>
       {comments ? (
         Object.values(comments).map((comment, index) => (
-          <Comment key={index} {...comment} />
+          <Comment key={index} comment={comment} />
         ))
       ) : (
         <></>
