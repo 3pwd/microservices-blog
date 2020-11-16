@@ -5,15 +5,15 @@ services:
       dockerfile: posts/Dockerfile
       context: ./services
     volumes:
-      - /usr/app/node_modules
-      - ./services/posts:/usr/app
+      - /usr/app/posts/node_modules
+      - ./services/posts:/usr/app/posts
   comments:
     build:
       dockerfile: comments/Dockerfile
       context: ./services
     volumes:
-      - /usr/app/node_modules
-      - ./services/comments:/usr/app
+      - /usr/app/comments/node_modules
+      - ./services/comments:/usr/app/comments
   query:
     depends_on:
       - event-bus
@@ -21,22 +21,22 @@ services:
       dockerfile: query/Dockerfile
       context: ./services
     volumes:
-      - /usr/app/node_modules
-      - ./services/query:/usr/app
+      - /usr/app/query/node_modules
+      - ./services/query:/usr/app/query
   moderation:
     build:
       dockerfile: moderation/Dockerfile
       context: ./services
     volumes:
-      - /usr/app/node_modules
-      - ./services/moderation:/usr/app
+      - /usr/app/moderation/node_modules
+      - ./services/moderation:/usr/app/moderation
   event-bus:
     build:
       dockerfile: event-bus/Dockerfile
       context: ./services
     volumes:
-      - /usr/app/node_modules
-      - ./services/event-bus:/usr/app
+      - /usr/app/event-bus/node_modules
+      - ./services/event-bus:/usr/app/event-bus
   client:
     build:
       dockerfile: Dockerfile
@@ -44,5 +44,10 @@ services:
     volumes:
       - /usr/app/node_modules
       - ./client:/usr/app
+  nginx:
+    restart: always
+    build:
+      dockerfile: Dockerfile
+      context: ./nginx
     ports:
-      - '3000:3000'
+      - '6543:80'

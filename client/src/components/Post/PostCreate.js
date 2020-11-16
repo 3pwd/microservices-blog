@@ -1,9 +1,5 @@
 import React, { useState } from 'react'
-import { axios } from '../../lib'
-import config from '../../config'
-const {
-  posts: { PORT }
-} = config
+import axios from 'axios'
 
 // eslint-disable-next-line
 export default () => {
@@ -13,7 +9,7 @@ export default () => {
     e.preventDefault()
 
     // create a new post by submitting request to posts service
-    await axios(PORT).post('posts', { title })
+    await axios.post('/posts/posts', { title })
 
     // reset form
     setTitle('')
@@ -22,16 +18,16 @@ export default () => {
   return (
     <div>
       <form onSubmit={onSubmit}>
-        <div className='form-group'>
+        <div className="form-group">
           <label>Title</label>
           <input
-            type='text'
-            className='form-control'
+            type="text"
+            className="form-control"
             value={title}
             onChange={e => setTitle(e.target.value)}
           />
         </div>
-        <button className='btn btn-primary'>Submit</button>
+        <button className="btn btn-primary">Submit</button>
       </form>
     </div>
   )

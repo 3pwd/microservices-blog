@@ -3,9 +3,9 @@ FROM node:alpine
 WORKDIR /usr/app
 COPY types.js .
 COPY config.js .
-WORKDIR /usr/app/posts
-COPY posts/package.json .
+WORKDIR /usr/app/moderation
+COPY moderation/package.json .
 RUN npm install
-COPY posts/ .
+COPY moderation/ .
 
 CMD ["npm", "start"]

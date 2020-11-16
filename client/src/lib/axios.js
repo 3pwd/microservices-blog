@@ -1,4 +1,4 @@
 import axios from 'axios'
 
 // eslint-disable-next-line
-export default port => axios.create({ baseURL: `http://localhost:${port}/` })
+export default axios.create({ baseURL: 'http://localhost:6543' })

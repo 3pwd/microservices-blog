@@ -27,7 +27,7 @@ router.post('/events', async (req, res) => {
 
     data = Object.assign(data, { status })
 
-    await axios.post(`http://localhost:${EVENT_BUS_PORT}/events`, {
+    await axios.post(`http://event-bus:${EVENT_BUS_PORT}/events`, {
       type: COMMENT_MODERATED,
       data
     })

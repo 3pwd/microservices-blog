@@ -33,7 +33,7 @@ router.post(`${ROOT_URL}/:id/comments`, async (req, res) => {
   commentsByPostId[postId] = comments
 
   // dispatch event to event bus
-  await axios.post(`http://localhost:${EVENT_BUS_PORT}/events`, {
+  await axios.post(`http://event-bus:${EVENT_BUS_PORT}/events`, {
     type: COMMENT_CREATED,
     data: Object.assign(newComment, { postId, id: commentId })
   })
@@ -51,7 +51,7 @@ router.post('/events', async (req, res) => {
   if (type === COMMENT_MODERATED) {
     commentsByPostId[postId][commentId] = { content, status }
 
-    await axios.post(`http://localhost:${EVENT_BUS_PORT}/events`, {
+    await axios.post(`http://event-bus:${EVENT_BUS_PORT}/events`, {
       type: COMMENT_UPDATED,
       data
     })
