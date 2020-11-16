@@ -29,6 +29,13 @@ Aggregates posts and comments to be able to reduce to 1 the number of requests n
 |/events|POST|event object|Add post or comment to its local memory|200, post/comment object created
 |/posts|GET|-|Get all posts & comments|200, list of posts & comments
 
+### Moderation(./services/moderation)
+Updates status (`approved` or `denied`) of created comments depending on their content. 
+
+|Path|Method|Request Body|Feature|Result|
+|--|--|--|--|--|
+|/events|POST|`COMMENT_CREATED` event object|Updates status of comment and emits `COMMENT_UTPDATED` event|204
+
 ## Architecture/Implementation
 - Front end: React based
 - Services: Express based (router + feature logic). No data persistence/DB. Data stored in servers' memory.

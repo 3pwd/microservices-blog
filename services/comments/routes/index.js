@@ -44,7 +44,7 @@ router.post(`${ROOT_URL}/:id/comments`, async (req, res) => {
 // handle event notifications from event bus
 router.post('/events', async (req, res) => {
   const { type, data } = req.body
-  console.log('received event', type, data)
+  console.log('received event', type)
 
   const { postId, id: commentId, content, status } = data
 
