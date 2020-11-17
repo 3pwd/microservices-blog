@@ -1,5 +1,17 @@
 # Microservices: Blog
 Switch between branches to see the other projects.
+## Quick start
+### Requirements: [minikube](https://minikube.sigs.k8s.io/docs/start/) (local Kubernetes)
+
+1. Clone this repository
+2. Start local kubernetes cluster: `minikube start`
+3. Apply configuration files:
+    ```
+    cd infra/k8s
+    kubectl apply -f .
+    ```
+4. Start client: `minikube service client-node-port-service`
+
 ## [Services](./services)
 ### [Posts](./services/posts)
 |Path|Method|Request Body|Feature|Result
