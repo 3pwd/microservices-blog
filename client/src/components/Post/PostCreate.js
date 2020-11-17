@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import axios from 'axios'
+import { axios } from '../../lib'
 
 // eslint-disable-next-line
 export default () => {
@@ -9,7 +9,7 @@ export default () => {
     e.preventDefault()
 
     // create a new post by submitting request to posts service
-    await axios.post('/posts/posts', { title })
+    await axios('posts-cluster-ip-service', 4000).post('/posts', { title })
 
     // reset form
     setTitle('')

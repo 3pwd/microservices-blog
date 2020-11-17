@@ -39,6 +39,7 @@ Updates status (`approved` or `denied`) of created comments depending on their c
 ## Architecture/Implementation
 - Front end: React based
 - Services: Express based (router + feature logic). No data persistence/DB. Data stored in servers' memory.
+- Deployment: kubernetes
 
 
 # Resources

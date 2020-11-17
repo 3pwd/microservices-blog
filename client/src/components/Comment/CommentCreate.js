@@ -7,7 +7,10 @@ export default ({ postId }) => {
 
   const onSubmit = async e => {
     e.preventDefault()
-    await axios.post(`/comments/posts/${postId}/comments`, { content })
+    await axios(
+      'comments-cluster-ip-service',
+      4001
+    ).post(`/posts/${postId}/comments`, { content })
     setContent('')
   }
 

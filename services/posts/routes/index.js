@@ -22,13 +22,16 @@ router.post(ROOT_URL, async (req, res) => {
   posts[id] = { title }
 
   // Dispatch event to event bus
-  await axios.post(`http://event-bus:${EVENT_BUS_PORT}/events`, {
-    type: POST_CREATED,
-    data: {
-      postId: id,
-      title
+  await axios.post(
+    `http://event-bus-cluster-ip-service:${EVENT_BUS_PORT}/events`,
+    {
+      type: POST_CREATED,
+      data: {
+        postId: id,
+        title
+      }
     }
-  })
+  )
   res.status(201).send(posts[id])
 })
 

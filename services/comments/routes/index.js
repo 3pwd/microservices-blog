@@ -33,10 +33,13 @@ router.post(`${ROOT_URL}/:id/comments`, async (req, res) => {
   commentsByPostId[postId] = comments
 
   // dispatch event to event bus
-  await axios.post(`http://event-bus:${EVENT_BUS_PORT}/events`, {
-    type: COMMENT_CREATED,
-    data: Object.assign(newComment, { postId, id: commentId })
-  })
+  await axios.post(
+    `http://event-bus-cluster-ip-service:${EVENT_BUS_PORT}/events`,
+    {
+      type: COMMENT_CREATED,
+      data: Object.assign(newComment, { postId, id: commentId })
+    }
+  )
 
   res.status(201).send(newComment)
 })

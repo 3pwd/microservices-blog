@@ -20,7 +20,7 @@ app.listen(PORT, async () => {
   // sync to event bus
   console.log('Syncing with event bus')
   const { data: events } = await axios.get(
-    `http://event-bus:${EVENT_BUS_PORT}/events`
+    `http://event-bus-cluster-ip-service:${EVENT_BUS_PORT}/events`
   )
   events.forEach(({ type, data }) => {
     console.log(`Processing event ${type}`)
