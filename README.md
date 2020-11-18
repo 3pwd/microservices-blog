@@ -10,6 +10,7 @@ Switch between branches to see the other projects.
     cd infra/k8s
     kubectl apply -f .
     ```
+4. Tweak hosts file: `echo "$(echo | minikube ip)" "$(echo "blog.io")" >> /etc/hosts`
 4. Start client: `minikube service client-node-port-service`
 
 ## [Services](./services)
