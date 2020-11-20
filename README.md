@@ -14,6 +14,15 @@ Switch between branches to see the other projects.
 4. Access to app @ [http://blog.io](http://blog.io)
 
 ## [Services](./services)
+See [config.js](./services/config.js).
+|Service|Port|
+|--|--|
+|posts|4000|
+|comments|4001|
+|query|4002|
+|moderation|4003|
+|even-bus|4005|
+
 ### [Posts](./services/posts)
 |Path|Method|Request Body|Feature|Result
 |--|--|--|--|--|
@@ -43,7 +52,7 @@ Aggregates posts and comments to be able to reduce to 1 the number of requests n
 |/posts|GET|-|Get all posts & comments|200, list of posts & comments
 
 ### [Moderation](./services/moderation)
-Updates status (`approved` or `denied`) of created comments depending on their content. 
+Updates status (`approved` or `denied`) of created comments depending on wether they include the [`FORBIDDEN`](https://github.com/r1oga/microservices/blob/949c5803ecadcb6ddbf502882e39f857f5c01cab/services/config.js#L16) word. 
 
 |Path|Method|Request Body|Feature|Result|
 |--|--|--|--|--|
