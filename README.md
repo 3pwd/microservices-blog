@@ -10,8 +10,8 @@ Switch between branches to see the other projects.
     cd infra/k8s
     kubectl apply -f .
     ```
-4. Tweak hosts file: `echo "$(echo | minikube ip)" "$(echo "blog.io")" >> /etc/hosts`
-4. Start client: `minikube service client-node-port-service`
+4. Point your ingress hostname towards your minikube IP in hosts file: `echo "$(echo | minikube ip)" "$(echo "blog.io")" >> /etc/hosts`
+4. Access to app @ [http://blog.io](http://blog.io)
 
 ## [Services](./services)
 ### [Posts](./services/posts)

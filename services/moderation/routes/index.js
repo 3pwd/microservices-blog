@@ -2,6 +2,9 @@ const { Router } = require('express')
 const axios = require('axios')
 const config = require('../../config')
 const {
+  'event-bus': { PORT: BUS_PORT }
+} = config
+const {
   COMMENT_MODERATED,
   COMMENT_CREATED,
   APPROVED,
@@ -9,8 +12,7 @@ const {
 } = require('../../types')
 
 const {
-  moderation: { FORBIDDEN },
-  'event-bus': { PORT: EVENT_BUS_PORT }
+  moderation: { FORBIDDEN }
 } = config
 
 const router = Router()
@@ -27,13 +29,10 @@ router.post('/events', async (req, res) => {
 
     data = Object.assign(data, { status })
 
-    await axios.post(
-      `http://event-bus-cluster-ip-service:${EVENT_BUS_PORT}/events`,
-      {
-        type: COMMENT_MODERATED,
-        data
-      }
-    )
+    await axios.post(`http://event-bus-cluster-ip-service:${BUS_PORT}/events`, {
+      type: COMMENT_MODERATED,
+      data
+    })
   }
 
   res.status(204).send({})

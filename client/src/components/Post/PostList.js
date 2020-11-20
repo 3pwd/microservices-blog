@@ -8,9 +8,7 @@ export default () => {
   const [posts, setPosts] = useState({})
   // console.log(axios)
   const fetchPosts = async () => {
-    const { data: posts } = await axios('query-cluster-ip-service', 4002).get(
-      '/posts'
-    )
+    const { data: posts } = await axios.get('/posts')
     setPosts(posts)
   }
 

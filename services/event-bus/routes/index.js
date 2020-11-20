@@ -1,7 +1,6 @@
 const { Router } = require('express')
 const { ROOT_URL } = require('../../config')['event-bus']
 const axios = require('axios')
-const config = require('../../config')
 
 const router = Router()
 
@@ -17,11 +16,13 @@ router.post(ROOT_URL, (req, res) => {
   comments on ports 4001
   query on port 4002
   */
-  ;['posts', 'comments', 'query', 'moderation'].forEach(service =>
-    axios.post(
-      `http://${service}-cluster-ip-service:${config[service].PORT}/events`,
-      event
-    )
+  ;[
+    ['posts', 4000],
+    ['comments', 4001],
+    ['query', 4002],
+    ['moderation', 4003]
+  ].forEach(([service, port]) =>
+    axios.post(`http://${service}-cluster-ip-service:${port}/events`, event)
   )
 
   res.status(200).send({ status: 'OK' })

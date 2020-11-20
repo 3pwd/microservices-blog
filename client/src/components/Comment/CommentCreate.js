@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { axios } from '../../lib'
+import axios from 'axios'
 
 //eslint-disable-next-line
 export default ({ postId }) => {
@@ -7,10 +7,7 @@ export default ({ postId }) => {
 
   const onSubmit = async e => {
     e.preventDefault()
-    await axios(
-      'comments-cluster-ip-service',
-      4001
-    ).post(`/posts/${postId}/comments`, { content })
+    await axios.post(`/posts/${postId}/comments`, { content })
     setContent('')
   }
 

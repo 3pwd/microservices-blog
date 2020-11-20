@@ -9,7 +9,7 @@ export default () => {
     e.preventDefault()
 
     // create a new post by submitting request to posts service
-    await axios('posts-cluster-ip-service', 4000).post('/posts', { title })
+    await axios.post('/posts/create', { title })
 
     // reset form
     setTitle('')
