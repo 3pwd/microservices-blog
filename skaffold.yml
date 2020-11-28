@@ -1,0 +1,58 @@
+apiVersion: skaffold/v2alpha3
+kind: Config
+deploy:
+  kubectl:
+    manifests:
+      - ./infra/k8s/*
+build:
+  local:
+    push: false
+  artifacts:
+    - image: r1oga/client
+      context: client
+      docker:
+        dockerfile: Dockerfile
+      sync:
+        manual:
+          - src: 'src/**/*.js'
+            dest: .
+    - image: r1oga/comments
+      context: services
+      docker:
+        dockerfile: comments/Dockerfile
+      sync:
+        manual:
+          - src: 'comments/**/*.js'
+            dest: comments/.
+    - image: r1oga/event-bus
+      context: services
+      docker:
+        dockerfile: event-bus/Dockerfile
+      sync:
+        manual:
+          - src: 'event-bus/**/*.js'
+            dest: event-bus/.
+    - image: r1oga/moderation
+      context: services
+      docker:
+        dockerfile: moderation/Dockerfile
+      sync:
+        manual:
+          - src: 'moderation/**/*.js'
+            dest: moderation/.
+    - image: r1oga/posts
+      context: services
+      docker:
+        dockerfile: posts/Dockerfile
+      sync:
+        manual:
+          - src: 'posts/**/*.js'
+            dest: posts/.
+    - image: r1oga/query
+      context: services
+      docker:
+        dockerfile: query/Dockerfile
+      sync:
+        manual:
+          - src: 'query/**/*.js'
+            dest: query/.

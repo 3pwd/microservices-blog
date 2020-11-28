@@ -1,0 +1,53 @@
+version: '3'
+services:
+  posts:
+    build:
+      dockerfile: posts/Dockerfile
+      context: ./services
+    volumes:
+      - /usr/app/posts/node_modules
+      - ./services/posts:/usr/app/posts
+  comments:
+    build:
+      dockerfile: comments/Dockerfile
+      context: ./services
+    volumes:
+      - /usr/app/comments/node_modules
+      - ./services/comments:/usr/app/comments
+  query:
+    depends_on:
+      - event-bus
+    build:
+      dockerfile: query/Dockerfile
+      context: ./services
+    volumes:
+      - /usr/app/query/node_modules
+      - ./services/query:/usr/app/query
+  moderation:
+    build:
+      dockerfile: moderation/Dockerfile
+      context: ./services
+    volumes:
+      - /usr/app/moderation/node_modules
+      - ./services/moderation:/usr/app/moderation
+  event-bus:
+    build:
+      dockerfile: event-bus/Dockerfile
+      context: ./services
+    volumes:
+      - /usr/app/event-bus/node_modules
+      - ./services/event-bus:/usr/app/event-bus
+  client:
+    build:
+      dockerfile: Dockerfile
+      context: ./client
+    volumes:
+      - /usr/app/node_modules
+      - ./client:/usr/app
+  nginx:
+    restart: always
+    build:
+      dockerfile: Dockerfile
+      context: ./nginx
+    ports:
+      - '6543:80'
