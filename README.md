@@ -1,5 +1,4 @@
 # Microservices: Blog
-Switch between branches to see the other projects.
 ## Quick start
 ### Requirements: [minikube](https://minikube.sigs.k8s.io/docs/start/) (local Kubernetes)
 
